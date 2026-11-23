@@ -43,3 +43,20 @@ El objetivo es documentar los ejercicios realizados, las configuraciones aplicad
 
 ## Autor
 SHADOW
+
+
+## Estructura del repositorio
+
+```text
+Proyecto_Administracion_de_Sistemas/
+│
+├── README.md
+│
+├── Proyecto_Administracion_Sistemas.pdf
+│
+└── Docker/
+    ├── README.md
+    ├── docker_compose.txt
+    └── docker_compose_persistente.txt
+```
+
