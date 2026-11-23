@@ -1,5 +1,0 @@
-zone "lab.local" IN {
-    type master;
-    file "lab.local.zone";
-    allow-update { none; };
-};
