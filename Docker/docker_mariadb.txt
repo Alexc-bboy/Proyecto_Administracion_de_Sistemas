@@ -1,0 +1,28 @@
+services:
+  web:
+    image: nginx
+    container_name: servidor_web
+    ports:
+      - "8083:80"
+    volumes:
+      - web_data:/usr/share/nginx/html
+
+  cliente:
+    image: alpine
+    container_name: cliente
+    command: sleep 1d
+
+  db:
+    image: mariadb:latest
+    container_name: servidor_db
+    environment:
+      MARIADB_ROOT_PASSWORD: root_lab_123
+      MARIADB_DATABASE: empresa
+      MARIADB_USER: usuario
+      MARIADB_PASSWORD: clave_lab_123
+    volumes:
+      - database_data:/var/lib/mysql
+
+volumes:
+  web_data:
+  database_data:

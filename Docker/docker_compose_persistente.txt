@@ -1,0 +1,16 @@
+services:
+  web:
+    image: nginx
+    container_name: servidor_web
+    ports:
+      - "8083:80"
+    volumes:
+      - web_data:/usr/share/nginx/html
+
+  cliente:
+    image: alpine
+    container_name: cliente
+    command: sleep 1d
+
+volumes:
+  web_data:
