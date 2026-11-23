@@ -45,18 +45,32 @@ El objetivo es documentar los ejercicios realizados, las configuraciones aplicad
 SHADOW
 
 
-## Estructura del repositorio
-
-```text
-Proyecto_Administracion_de_Sistemas/
+Proyecto_administracion_sistemas/
 │
 ├── README.md
 │
-├── Proyecto_Administracion_Sistemas.pdf
+├── Practicas/
+│   │
+│   ├── Bash_Scripting/
+│   │   └── Scripts
+│   │
+│   ├── Administrador_de_servicios/
+│   │   └── Scripts
+│   │
+│   ├── Administracion_de_discos/
+│   │   └── Scripts
+│   │
+│   └── DNS_con_BIND/
+│       └── Scripts
 │
-└── Docker/
-    ├── README.md
-    ├── docker_compose.txt
-    └── docker_compose_persistente.txt
-```
+├── Apache/
+│   └── README.md
+│
+├── WildFly/
+│   └── README.md
+│
+├── Docker/
+│   └── README.md
+│
+└── .gitignore
 
