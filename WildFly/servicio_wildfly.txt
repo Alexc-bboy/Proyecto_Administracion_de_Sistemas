@@ -1,0 +1,15 @@
+[Unit]
+Description=WildFly Application Server
+After=network.target
+
+[Service]
+Type=simple
+User=wildfly
+Group=wildfly
+Environment="JBOSS_HOME=/opt/wildfly"
+ExecStart=/opt/wildfly/bin/standalone.sh -b=0.0.0.0 -Djboss.socket.binding.port-offset=100
+Restart=on-failure
+LimitNOFILE=102642
+
+[Install]
+WantedBy=multi-user.target

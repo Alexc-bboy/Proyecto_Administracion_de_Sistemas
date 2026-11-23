@@ -1,0 +1,5 @@
+zone "100.168.192.in-addr.arpa" IN {
+    type master;
+    file "100.168.192.rev";
+    allow-update { none; };
+};

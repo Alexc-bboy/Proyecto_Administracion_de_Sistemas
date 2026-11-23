@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Servidor Apache</title>
+</head>
+<body>
+    <h1>Servidor Apache funcionando correctamente</h1>
+    <p>Servidor: ROCKY8-SRV</p>
+    <p>IP: 192.168.100.10</p>
+</body>
+</html>

@@ -1,0 +1,44 @@
+#!/bin/bash
+
+# Diagnostico de procesos con alto consumo
+
+umbral_cpu=50
+umbral_mem=20
+
+echo "======================================"
+echo "     DIAGNOSTICO DE PROCESOS"
+echo "======================================"
+echo "Servidor: $(hostname)"
+echo "Fecha: $(date '+%Y-%m-%d %H:%M:%S')"
+echo
+
+echo "===== TOP 5 PROCESOS POR CPU ====="
+ps aux --sort=-%cpu | head -n 6
+echo
+
+echo "===== TOP 5 PROCESOS POR MEMORIA ====="
+ps aux --sort=-%mem | head -n 6
+echo
+
+echo "===== PROCESOS CON CPU ELEVADA ====="
+
+ps -eo pid,comm,%cpu --sort=-%cpu |
+awk -v umbral="$umbral_cpu" '
+NR == 1 {
+    print
+    next
+}
+$3 >= umbral {
+    print
+    encontrados = 1
+}
+END {
+    if (!encontrados) {
+        print "No se han detectado procesos por encima del umbral de CPU."
+    }
+}'
+echo
+
+echo "===== DIAGNOSTICO FINALIZADO ====="
+
+exit 0

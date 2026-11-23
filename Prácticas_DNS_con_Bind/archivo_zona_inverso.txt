@@ -1,0 +1,12 @@
+$TTL 86400
+@   IN  SOA rocky8-srv.lab.local. root.lab.local. (
+        2026110502
+        3600
+        1800
+        604800
+        86400 )
+
+@       IN  NS      rocky8-srv.lab.local.
+
+10      IN  PTR     rocky8-srv.lab.local.
+20      IN  PTR     debian13.lab.local.

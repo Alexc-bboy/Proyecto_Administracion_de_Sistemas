@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# Registro de diagnosticos del servidor
+
+archivo_log="$HOME/laboratorio-bash/diagnostico.log"
+
+echo "======================================"
+echo "     REGISTRO DE DIAGNOSTICO"
+echo "======================================"
+
+{
+    echo "======================================"
+    echo "Fecha: $(date '+%Y-%m-%d %H:%M:%S')"
+    echo "Servidor: $(hostname)"
+    echo "Usuario: $(whoami)"
+    echo "Procesos activos: $(ps -e --no-headers | wc -l)"
+    echo "Espacio disponible en disco:"
+    df -h /
+    echo "Fin del diagnostico"
+    echo
+} | tee -a "$archivo_log"
+
+echo
+echo "Diagnostico guardado en: $archivo_log"
+
+exit 0

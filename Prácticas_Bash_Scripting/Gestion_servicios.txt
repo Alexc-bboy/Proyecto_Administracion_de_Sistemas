@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Gestion controlada de servicios systemd
+
+echo "======================================"
+echo "       GESTION DE SERVICIOS"
+echo "======================================"
+
+if [ "$#" -ne 1 ]; then
+    echo "Uso: $0 nombre_del_servicio"
+    exit 1
+fi
+
+servicio="$1"
+
+if ! systemctl list-unit-files "${servicio}.service" --no-legend |
+     grep -q "^${servicio}\.service"; then
+    echo "ERROR: no se encuentra la unidad ${servicio}.service"
+    exit 2
+fi
+
+estado=$(systemctl is-active "$servicio")
+
+echo "Servicio: $servicio"
+echo "Estado actual: $estado"
+
+exit 0

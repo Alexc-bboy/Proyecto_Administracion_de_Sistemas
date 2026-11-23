@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Comprobar el uso de la particion raiz
+
+uso=$(df --output=pcent / | awk 'NR==2 {gsub(/%/,"",$1); print $1}')
+
+if [ "$uso" -ge 80 ]; then
+    echo "ALERTA: uso elevado del disco: ${uso}%"
+else
+    echo "Espacio en disco correcto: ${uso}%"
+fi
