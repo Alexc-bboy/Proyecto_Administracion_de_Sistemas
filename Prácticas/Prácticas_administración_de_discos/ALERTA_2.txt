@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Comprobar el uso de la particion raiz y registrar el resultado
+
+registro="/opt/laboratorio/configuracion/espacio.log"
+uso=$(df --output=pcent / | awk 'NR==2 {gsub(/%/,"",$1); print $1}')
+fecha=$(date '+%d/%m/%Y %H:%M:%S')
+
+if [ "$uso" -ge 80 ]; then
+    mensaje="ALERTA: uso elevado del disco: ${uso}%"
+else
+    mensaje="Espacio en disco correcto: ${uso}%"
+fi
+
+echo "$mensaje"
+echo "$fecha - $mensaje" >> "$registro"

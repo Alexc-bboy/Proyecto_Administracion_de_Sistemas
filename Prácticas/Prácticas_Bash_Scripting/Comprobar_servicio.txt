@@ -1,0 +1,52 @@
+
+#!/bin/bash
+
+# Comprobar el estado de un servicio mediante systemd
+
+if [ "$#" -ne 1 ]; then
+    echo "Uso: bash comprobar_servicio.sh NOMBRE_SERVICIO"
+    exit 2
+fi
+
+servicio="$1"
+
+if [[ ! "$servicio" =~ ^[a-zA-Z0-9_.@:-]+$ ]]; then
+    echo "Error: nombre de servicio no valido."
+    exit 2
+fi
+
+estado_carga=$(systemctl show "$servicio" --property=LoadState --value 2>/dev/null)
+
+if [ -z "$estado_carga" ] || [ "$estado_carga" = "not-found" ]; then
+    echo "Error: el servicio '$servicio' no existe."
+    exit 2
+fi
+
+estado=$(systemctl show "$servicio" --property=ActiveState --value 2>/dev/null)
+
+echo "===== DIAGNOSTICO DE SERVICIO ====="
+echo "Servicio: $servicio"
+echo "Estado: $estado"
+
+case "$estado" in
+    active)
+        echo "Resultado: el servicio esta activo."
+        exit 0
+        ;;
+    inactive)
+        echo "Aviso: el servicio esta detenido."
+        exit 1
+        ;;
+    failed)
+        echo "Aviso: el servicio ha fallado."
+        exit 1
+        ;;
+    activating|deactivating|reloading)
+        echo "Aviso: el servicio esta en transicion."
+        exit 1
+        ;;
+    *)
+        echo "Aviso: estado que requiere revision."
+        exit 1
+        ;;
+esac
